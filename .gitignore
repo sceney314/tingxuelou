@@ -1,0 +1,7 @@
+.DS_Store
+.idea/
+target/
+*.iml
+api/*.iml
+web/*.iml
+provider/*.iml
