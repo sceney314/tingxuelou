@@ -14,33 +14,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.guanhetingyu.www</groupId>
+            <groupId>tingxuelou</groupId>
             <artifactId>api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.guanhetingyu.www</groupId>
-            <artifactId>dispatcher</artifactId>
+            <groupId>tingxuelou</groupId>
+            <artifactId>provider</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-framework</artifactId>
         </dependency>
 
         <dependency>
@@ -119,6 +104,16 @@
         </plugins>
 
         <resources>
+            <!-- 加载dubbo spi扩展 -->
+            <resource>
+                <directory>src/main/resources/META-INF/dubbo</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+                <filtering>false</filtering>
+                <targetPath>META-INF/dubbo</targetPath>
+            </resource>
+
             <!--加载 resources 下所有 xml 文件，文件夹 profiles 里面除外，dubbo-provider.xml除外-->
             <resource>
                 <directory>src/main/resources</directory>
@@ -127,7 +122,7 @@
                 </includes>
                 <excludes>
                     <exclude>profiles/**</exclude>
-                    <exclude>dubbo-provider.xml</exclude>
+<!--                    <exclude>dubbo-provider.xml</exclude>-->
                 </excludes>
             </resource>
 
@@ -162,6 +157,7 @@
             <build>
                 <filters>
                     <filter>../profiles/dev/config-dev.properties</filter>
+                    <filter>../profiles/dev/tingxuelou-dev.properties</filter>
                 </filters>
             </build>
         </profile>
@@ -175,6 +171,7 @@
             <build>
                 <filters>
                     <filter>../profiles/test/config-test.properties</filter>
+                    <filter>../profiles/dev/tingxuelou-test.properties</filter>
                 </filters>
             </build>
         </profile>
@@ -188,24 +185,25 @@
             <build>
                 <filters>
                     <filter>../profiles/prod/config-prod.properties</filter>
+                    <filter>../profiles/dev/tingxuelou-prod.properties</filter>
                 </filters>
             </build>
         </profile>
 
         <!--dubbo provider-->
-        <profile>
-            <id>provider</id>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <includes>
-                            <include>dubbo-provider.xml</include>
-                        </includes>
-                    </resource>
-                </resources>
-            </build>
-        </profile>
+<!--        <profile>-->
+<!--            <id>provider</id>-->
+<!--            <build>-->
+<!--                <resources>-->
+<!--                    <resource>-->
+<!--                        <directory>src/main/resources</directory>-->
+<!--                        <includes>-->
+<!--                            <include>dubbo-provider.xml</include>-->
+<!--                        </includes>-->
+<!--                    </resource>-->
+<!--                </resources>-->
+<!--            </build>-->
+<!--        </profile>-->
 
         <!--mq 消费者-->
         <profile>
@@ -222,7 +220,7 @@
             </build>
         </profile>
 
-        <!--mq 消费者-->
+        <!--job 相关-->
         <profile>
             <id>task</id>
             <build>

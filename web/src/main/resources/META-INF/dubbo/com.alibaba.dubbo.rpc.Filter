@@ -1,0 +1,2 @@
+providerFilter=com.tingxuelou.www.provider.filter.ProviderFilter
+traceFilter=com.tingxuelou.www.provider.filter.TraceFilter

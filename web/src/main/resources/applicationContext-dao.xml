@@ -23,14 +23,14 @@
 
     <!-- mybatis 配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+<!--        <property name="configLocation" value="classpath:mybatis-config.xml"/>-->
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.plg.dhconf.provider.bean.model"/>
-        <property name="mapperLocations" value="classpath*:com/plg/dhconf/mappers/*.xml"/>
+        <property name="typeAliasesPackage" value="com.tingxuelou.www.provider.bean.model"/>
+        <property name="mapperLocations" value="classpath*:com/tingxuelou/www/mappers/*.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.plg.dhconf.provider.dao" />
+        <property name="basePackage" value="com.tingxuelou.www.provider.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
