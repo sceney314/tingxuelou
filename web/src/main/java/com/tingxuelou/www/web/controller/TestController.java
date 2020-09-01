@@ -3,10 +3,15 @@ package com.tingxuelou.www.web.controller;
 import com.tingxuelou.www.api.base.BaseResult;
 import com.tingxuelou.www.api.base.Result;
 import com.tingxuelou.www.api.bo.TestBo;
+import com.tingxuelou.www.api.vo.TestVo;
+import com.tingxuelou.www.provider.bean.bo.MessageBo;
+import com.tingxuelou.www.provider.bean.bo.SyncTestBo;
 import com.tingxuelou.www.provider.bean.model.Group;
 import com.tingxuelou.www.provider.dao.GroupDao;
 import com.tingxuelou.www.provider.service.dubbo.TestDubboService;
+import com.tingxuelou.www.provider.utils.DateUtils;
 import com.tingxuelou.www.provider.utils.IdgentTestUtil;
+import com.tingxuelou.www.provider.utils.MQUtils;
 import com.tingxuelou.www.provider.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +40,7 @@ public class TestController {
 
     @RequestMapping(value = "/addGroup")
     @ResponseBody
-    public Result addGroup(){
+    public Result<Integer> addGroup(){
         Group group = new Group();
         group.setGroupId(IdgentTestUtil.nextId() + "");
         group.setGroupName("test" + System.currentTimeMillis());
@@ -51,7 +56,7 @@ public class TestController {
 
     @RequestMapping(value = "/testCache")
     @ResponseBody
-    public Result testCache(){
+    public Result<?> testCache(){
         String key = "justTestInApplication";
         try {
             RedisUtils.setWithExpire(key, LocalDateTime.now().toString(), 3);
@@ -68,9 +73,28 @@ public class TestController {
 
     @RequestMapping(value = "/dubbo")
     @ResponseBody
-    public Result dubbo(String msg){
+    public Result<TestVo> dubbo(String msg){
         TestBo bo = new TestBo();
         bo.setMsg(msg);
         return testService.test(bo);
+    }
+
+    @RequestMapping(value = "/mqSync")
+    @ResponseBody
+    public Result<?> mqSync(){
+        MessageBo<SyncTestBo> bo = new MessageBo<>();
+        SyncTestBo testBo = new SyncTestBo();
+        testBo.setDate(DateUtils.date2String());
+        testBo.setContent("this is sync mq test! date " + testBo.getDate());
+        bo.setT(testBo);
+        bo.setBizId(System.currentTimeMillis());
+        bo.setTopic("SYNC_MQ_TEST");
+        bo.setTag("SYNC_TAG");
+        bo.setKey(bo.getBizId() + "");
+        if (MQUtils.sendCurrentMsg(bo)){
+            return BaseResult.success();
+        }
+
+        return BaseResult.fail();
     }
 }

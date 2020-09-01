@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.dangdang.com/schema/ddframe/job
+         http://www.dangdang.com/schema/ddframe/job/job.xsd">
+
+<!--    <bean id="regCenter" class="com.plg.base.common.job.RegistryCenterFactory" />-->
+
+    <!--超过七天预下单订单关闭job-->
+<!--    <job:simple id="preOrderCloseJob"-->
+<!--                cron="0 0 04/1 * * ?"-->
+<!--                class="com.plg.dhbox.provider.task.PreOrderCloseJob"-->
+<!--                description="超过七天预下单订单关闭job"-->
+<!--                registry-center-ref="regCenter"-->
+<!--                sharding-total-count="1"-->
+<!--                monitor-execution="true" failover="true" disabled="false" overwrite="true"/>-->
+
+</beans>

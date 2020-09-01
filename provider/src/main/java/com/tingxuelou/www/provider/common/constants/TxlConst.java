@@ -22,4 +22,14 @@ public class TxlConst {
     public final static String ERR_SYSTEM = "服务繁忙，请稍后重试";
 
     public static final String APPLICATION = PropertyUtils.getString("application.name");
+    public static final String NAME_SERVER = PropertyUtils.getString("rocketmq.nameServer");
+
+    public static final String DATE_PATTERN_YYYYMMDD = "yyyyMMdd";
+    public static final String DATE_PATTERN_YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
+    public static final String DATE_PATTERN_YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+
+
+    // 成功
+    public static final Integer CODE_SUCCESS = 0;
+    public static final Integer CODE_FAIL = 1;
 }

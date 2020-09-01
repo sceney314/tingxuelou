@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+         http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-4.3.xsd">
+
+    <!-- MQ配置 -->
+    <bean id="mqConsumerFactory" class="com.tingxuelou.www.provider.mq.MQConsumerFactory">
+        <property name="currentlyListeners">
+            <list value-type="com.tingxuelou.www.provider.mq.AbstractCurrentlyListener">
+                <!--测试 MQ-->
+                <bean class="com.tingxuelou.www.provider.mq.listener.SyncTestListener">
+                    <property name="topic" value="SYNC_MQ_TEST"/>
+                    <property name="tags" value="SYNC_TAG"/>
+                    <property name="consumerName" value="TXL_COMSUMER"/>
+                    <property name="filterDuplicate" value="true"/>
+                    <property name="remark" value="测试MQ"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+</beans>

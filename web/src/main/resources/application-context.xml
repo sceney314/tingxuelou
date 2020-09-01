@@ -11,6 +11,18 @@
     <!-- 初始化配置 -->
     <context:component-scan base-package="com.tingxuelou.www"/>
 
+    <bean id="initiator" class="com.tingxuelou.www.provider.init.Initiator">
+        <property name="initList">
+            <list value-type="java.lang.String">
+                <value>redisUtils</value>
+                <value>mqUtils</value>
+                <value>mqConsumerFactory</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="mqUtils" class="com.tingxuelou.www.provider.utils.MQUtils"/>
+    <bean id="redisUtils" class="com.tingxuelou.www.provider.utils.RedisUtils"/>
+
     <!-- 配置使Spring采用CGLIB代理 --><!-- 开启基于@AspectJ切面的注解处理器 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="locations">
@@ -55,7 +67,7 @@
     </bean>
 
     <!-- 周期调用线程池 -->
-    <bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
+    <bean id="threadPoolTaskScheduler" class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
         <property name="poolSize" value="3"/>
     </bean>
 

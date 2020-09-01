@@ -114,6 +114,13 @@
                 <targetPath>META-INF/dubbo</targetPath>
             </resource>
 
+            <resource>
+                <directory>src/main/resources/profiles/${app.env}</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+
             <!--加载 resources 下所有 xml 文件，文件夹 profiles 里面除外，dubbo-provider.xml除外-->
             <resource>
                 <directory>src/main/resources</directory>
@@ -121,8 +128,10 @@
                     <include>**/*.xml</include>
                 </includes>
                 <excludes>
-                    <exclude>profiles/**</exclude>
-<!--                    <exclude>dubbo-provider.xml</exclude>-->
+<!--                    <exclude>profiles/**</exclude>-->
+                    <exclude>dubbo-provider.xml</exclude>
+                    <exclude>job.xml</exclude>
+                    <exclude>rocketmq.xml</exclude>
                 </excludes>
             </resource>
 
@@ -191,19 +200,19 @@
         </profile>
 
         <!--dubbo provider-->
-<!--        <profile>-->
-<!--            <id>provider</id>-->
-<!--            <build>-->
-<!--                <resources>-->
-<!--                    <resource>-->
-<!--                        <directory>src/main/resources</directory>-->
-<!--                        <includes>-->
-<!--                            <include>dubbo-provider.xml</include>-->
-<!--                        </includes>-->
-<!--                    </resource>-->
-<!--                </resources>-->
-<!--            </build>-->
-<!--        </profile>-->
+        <profile>
+            <id>provider</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <includes>
+                            <include>dubbo-provider.xml</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
 
         <!--mq 消费者-->
         <profile>
@@ -211,7 +220,8 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>../profiles/mq</directory>
+<!--                        <directory>../profiles/mq</directory>-->
+                        <directory>src/main/resources</directory>
                         <includes>
                             <include>rocketmq.xml</include>
                         </includes>
@@ -226,7 +236,8 @@
             <build>
                 <resources>
                     <resource>
-                        <directory>../profiles/task</directory>
+<!--                        <directory>../profiles/task</directory>-->
+                        <directory>src/main/resources</directory>
                         <includes>
                             <include>job.xml</include>
                         </includes>
