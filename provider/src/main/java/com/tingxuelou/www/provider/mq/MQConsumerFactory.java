@@ -22,11 +22,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Data
 public class MQConsumerFactory extends AbstractInit {
-    @Override
-    public void destroy(ApplicationContext context) {
-
-    }
-
     private static final Logger log = LogManager.getLogger(MQConsumerFactory.class);
     private volatile boolean hasListened = false;
 
@@ -37,6 +32,11 @@ public class MQConsumerFactory extends AbstractInit {
     private List<AbstractListener> orderlyListeners = null;
 
     private static final ConcurrentHashMap<String, DefaultMQPushConsumer> consumerMap = new ConcurrentHashMap<>();
+
+    @Override
+    public void destroy(ApplicationContext context) {
+
+    }
 
     private void registerListeners(List<AbstractListener> listeners) {
         for (AbstractListener listener : listeners) {
