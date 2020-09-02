@@ -18,6 +18,7 @@
 
     <properties>
         <spring_version>5.0.8.RELEASE</spring_version>
+        <log4j_version>2.13.3</log4j_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skip_maven_deploy>true</skip_maven_deploy>
     </properties>
@@ -50,25 +51,33 @@
             </dependency>
 
             <!-- 日志相关 -->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.logging.log4j</groupId>-->
-<!--                <artifactId>log4j-web</artifactId>-->
-<!--                <version>2.9.1</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.slf4j</groupId>-->
-<!--                <artifactId>slf4j-api</artifactId>-->
-<!--                <version>2.9.1</version>-->
-<!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>2.0.0-alpha1</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j_version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-web -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-web</artifactId>
+                <version>${log4j_version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
-                <version>2.9.1</version>
+                <version>${log4j_version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
-                <version>2.9.1</version>
+                <version>${log4j_version}</version>
             </dependency>
             <!-- 日志相关结束 -->
 
@@ -79,13 +88,14 @@
                 <version>2.5</version>
             </dependency>
 
+            <!-- 数据库驱动 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.1.10</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+            <!-- json解析 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -525,4 +535,18 @@
             </plugin>
         </plugins>
     </build>
+
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>xxx-snapshots</id>-->
+<!--            <uniqueVersion>false</uniqueVersion>-->
+<!--            <name>xxx Snapshots</name>-->
+<!--            <url>http://mvn.xxx-dev.com/content/repositories/snapshots/</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>xxx-releases</id>-->
+<!--            <name>xxx Releases</name>-->
+<!--            <url>http://mvn.xxx-dev.com/content/repositories/releases/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 </project>

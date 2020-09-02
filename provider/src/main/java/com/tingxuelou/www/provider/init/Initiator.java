@@ -1,8 +1,8 @@
 package com.tingxuelou.www.provider.init;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Copyright (C), 2015-2020
  */
 public class Initiator implements ApplicationListener<ApplicationEvent>, ApplicationContextAware {
-    private static final Logger log = LoggerFactory.getLogger(Initiator.class);
+    private static final Logger log = LogManager.getLogger(Initiator.class);
 
     /**
      * 在XML里配置的初始化对象列表

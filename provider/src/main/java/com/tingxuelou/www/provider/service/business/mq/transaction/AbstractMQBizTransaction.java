@@ -4,9 +4,9 @@ import com.tingxuelou.www.provider.bean.bo.MessageBo;
 import com.tingxuelou.www.provider.common.constants.biz.MQDelay;
 import com.tingxuelou.www.provider.common.constants.biz.TransactionStatus;
 import com.tingxuelou.www.provider.utils.MQUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.common.message.Message;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 事务消息抽象类
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * Copyright (C), 2015-2020
  */
 public abstract class AbstractMQBizTransaction implements IMQBizTransaction{
-    private static final Logger log = LoggerFactory.getLogger(AbstractMQBizTransaction.class);
+    private static final Logger log = LogManager.getLogger(AbstractMQBizTransaction.class);
 
     /**
      * 获取 MQ topic

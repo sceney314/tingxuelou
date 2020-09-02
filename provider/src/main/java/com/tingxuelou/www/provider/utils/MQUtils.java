@@ -4,18 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.tingxuelou.www.provider.bean.bo.MessageBo;
 import com.tingxuelou.www.provider.common.constants.TxlConst;
 import com.tingxuelou.www.provider.common.constants.biz.MQDelay;
-import com.tingxuelou.www.provider.exceptions.ServiceException;
 import com.tingxuelou.www.provider.init.AbstractInit;
 import com.tingxuelou.www.provider.mq.MQTransactionFactory;
-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.*;
 import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.exception.RemotingException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -32,13 +29,20 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class MQUtils extends AbstractInit {
-    private static final Logger log = LoggerFactory.getLogger(MQUtils.class);
+    private static final Logger log = LogManager.getLogger(MQUtils.class);
+
     @Autowired
     private static MQTransactionFactory transactionFactory;
 
     @Override
     public void init(ApplicationContext context) {
-
+        try {
+            defaultMQProducer.start();
+            transactionMQProducer.start();
+        }catch (MQClientException e){
+            log.error("mq 启动异常", e);
+            throw new RuntimeException("mq 启动异常");
+        }
     }
 
     @Override
@@ -84,13 +88,6 @@ public class MQUtils extends AbstractInit {
         transactionMQProducer.setInstanceName(TRANCATION_PRODUCER + "_WORKER_" + System.currentTimeMillis());
         transactionMQProducer.setTransactionListener(transactionFactory);
         producerMap.put(transactionMQProducer.getProducerGroup(), transactionMQProducer);
-        try {
-            defaultMQProducer.start();
-            transactionMQProducer.start();
-        }catch (MQClientException e){
-            log.error("mq 启动异常", e);
-            throw new RuntimeException("mq 启动异常");
-        }
     }
 
     private static boolean isSendOk(SendResult result){

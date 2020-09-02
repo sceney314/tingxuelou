@@ -5,10 +5,10 @@ import com.tingxuelou.www.provider.init.AbstractInit;
 import com.tingxuelou.www.provider.utils.StringUtils;
 import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class MQConsumerFactory extends AbstractInit {
 
     }
 
-    private static final Logger log = LoggerFactory.getLogger(MQConsumerFactory.class);
+    private static final Logger log = LogManager.getLogger(MQConsumerFactory.class);
     private volatile boolean hasListened = false;
 
     // 非有序小监听对象

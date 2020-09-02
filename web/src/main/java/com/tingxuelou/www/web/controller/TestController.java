@@ -13,6 +13,8 @@ import com.tingxuelou.www.provider.utils.DateUtils;
 import com.tingxuelou.www.provider.utils.IdgentTestUtil;
 import com.tingxuelou.www.provider.utils.MQUtils;
 import com.tingxuelou.www.provider.utils.RedisUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 @Controller
 @RequestMapping("/test")
 public class TestController {
+    private static final Logger log = LogManager.getLogger(TestController.class);
 
     @Autowired
     private GroupDao groupDao;
@@ -91,6 +94,7 @@ public class TestController {
         bo.setTopic("SYNC_MQ_TEST");
         bo.setTag("SYNC_TAG");
         bo.setKey(bo.getBizId() + "");
+        log.info("发送 MQ:{}", bo);
         if (MQUtils.sendCurrentMsg(bo)){
             return BaseResult.success();
         }

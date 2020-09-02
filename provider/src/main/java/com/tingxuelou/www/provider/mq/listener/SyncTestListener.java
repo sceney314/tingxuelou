@@ -1,8 +1,8 @@
 package com.tingxuelou.www.provider.mq.listener;
 
 import com.tingxuelou.www.provider.mq.AbstractCurrentlyListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 测试监听
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * Copyright (C), 2015-2020
  */
 public class SyncTestListener extends AbstractCurrentlyListener {
-    private static final Logger log = LoggerFactory.getLogger(SyncTestListener.class);
+    private static final Logger log = LogManager.getLogger(SyncTestListener.class);
 
     @Override
     public boolean readMessage(String content) {

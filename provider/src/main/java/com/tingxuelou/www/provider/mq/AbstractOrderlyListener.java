@@ -1,11 +1,11 @@
 package com.tingxuelou.www.provider.mq;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Copyright (C), 2015-2020
  */
 public abstract class AbstractOrderlyListener extends AbstractListener implements MessageListenerOrderly {
-    private static final Logger log = LoggerFactory.getLogger(AbstractOrderlyListener.class);
+    private static final Logger log = LogManager.getLogger(AbstractOrderlyListener.class);
 
     private static final String CONSUMED_ORDERLY_KEY = "ROCKET_MQ_CONSUMER_ORDERLY_";
 

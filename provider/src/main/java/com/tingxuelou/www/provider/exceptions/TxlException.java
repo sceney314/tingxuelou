@@ -3,8 +3,8 @@ package com.tingxuelou.www.provider.exceptions;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import com.tingxuelou.www.provider.common.constants.TxlConst;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Component
 public class TxlException implements HandlerExceptionResolver {
-    private static final Logger log = LoggerFactory.getLogger(TxlException.class);
+    private static final Logger log = LogManager.getLogger(TxlException.class);
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object o, Exception ex) {

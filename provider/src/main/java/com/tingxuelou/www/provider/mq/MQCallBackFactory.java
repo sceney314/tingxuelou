@@ -2,9 +2,9 @@ package com.tingxuelou.www.provider.mq;
 
 import com.tingxuelou.www.provider.exceptions.ServiceException;
 import com.tingxuelou.www.provider.service.business.mq.callback.IMQBizCallback;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class MQCallBackFactory {
-    private static final Logger log = LoggerFactory.getLogger(MQCallBackFactory.class);
+    private static final Logger log = LogManager.getLogger(MQCallBackFactory.class);
 
     // 异步 MQ 回调容器
     private static final ConcurrentHashMap<String, IMQBizCallback> map = new ConcurrentHashMap<>();

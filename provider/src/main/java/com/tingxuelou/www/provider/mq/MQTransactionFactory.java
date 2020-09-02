@@ -2,12 +2,12 @@ package com.tingxuelou.www.provider.mq;
 
 import com.tingxuelou.www.provider.common.constants.biz.TransactionStatus;
 import com.tingxuelou.www.provider.service.business.mq.transaction.IMQBizTransaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class MQTransactionFactory implements TransactionListener {
-    private static final Logger log = LoggerFactory.getLogger(MQTransactionFactory.class);
+    private static final Logger log = LogManager.getLogger(MQTransactionFactory.class);
 
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;

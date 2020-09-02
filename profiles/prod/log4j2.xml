@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Configuration status="WARN">
     <Properties>
         <Property name="LOG_HOME">/data/logs/tingxuelou</Property>
-        <Property name="PATTERN_STYLE">
-            time[%d{yyyy-MM-dd HH:mm:ss.SSS}] traceid[%X{jdb_traceid}] uri[%X{mdc_uri}] thread[%t] level[%p] class[%c] appname[%appname] %msg%n
+        <Property charset="UTF-8" name="PATTERN_STYLE">
+            <!--            time[%d{yyyy-MM-dd HH:mm:ss.SSS}] traceid[%X{jdb_traceid}] uri[%X{mdc_uri}] thread[%t] level[%p] class[%c] appname[%appname] %msg%n-->
+            time[%d{yyyy-MM-dd HH:mm:ss.SSS}] thread[%t] %msg%n
         </Property>
     </Properties>
 
     <Appenders>
-        <Console name="CONSOLE" target="SYSTEM_OUT">
-            <PatternLayout pattern="${PATTERN_STYLE}"/>
-        </Console>
-
         <RollingRandomAccessFile name="FILE" fileName="${LOG_HOME}/tingxuelou.log" filePattern="${LOG_HOME}/dhbox.log.%d{yyyy-MM-dd}">
             <PatternLayout charset="UTF-8" pattern="${PATTERN_STYLE}"/>
             <Policies>
@@ -20,24 +16,9 @@
             </Policies>
         </RollingRandomAccessFile>
 
-        <RollingRandomAccessFile name="ERRORLOG" fileName="${LOG_HOME}/tingxuelou_error.log" filePattern="${LOG_HOME}/dhbox_error.log.%d{yyyy-MM-dd}">
+        <RollingRandomAccessFile name="ERROR_LOG" fileName="${LOG_HOME}/tingxuelou_error.log" filePattern="${LOG_HOME}/dhbox_error.log.%d{yyyy-MM-dd}">
             <PatternLayout charset="UTF-8" pattern="${PATTERN_STYLE}"/>
             <ThresholdFilter level="ERROR"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-            </Policies>
-        </RollingRandomAccessFile>
-
-
-        <RollingRandomAccessFile name="alarmMailLog" fileName="${LOG_HOME}/alarm/alarm.mail.log" filePattern="${LOG_HOME}/alarm/alarm.mail.log.%d{yyyy-MM-dd}">
-            <PatternLayout charset="UTF-8" pattern="${PATTERN_STYLE}"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-            </Policies>
-        </RollingRandomAccessFile>
-
-        <RollingRandomAccessFile name="alarmSmsLog" fileName="${LOG_HOME}/alarm/alarm.sms.log" filePattern="${LOG_HOME}/alarm/alarm.sms.log.%d{yyyy-MM-dd}">
-            <PatternLayout charset="UTF-8" pattern="${PATTERN_STYLE}"/>
             <Policies>
                 <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
             </Policies>
@@ -47,24 +28,12 @@
     <Loggers>
         <Logger name="org.springframework" level="DEBUG"/>
         <Logger name="java.sql.Connection" level="DEBUG"/>
-        <Logger name="java.sql.ResultSet" level="DEBUG"/>
         <Logger name="com.alibaba.dubbo" level="DEBUG"/>
         <Logger name="org.apache" level="DEBUG"/>
-        <Logger name="AntmqClient" level="DEBUG"/>
-        <Logger name="AntmqRemoting" level="DEBUG"/>
-
-        <Logger name="remoteErrorLog" level="INFO" additivity="false">
-            <AppenderRef ref="remoteErrorLog"/>
-        </Logger>
-
-        <Logger name="static" level="INFO" additivity="false">
-            <AppenderRef ref="STATIC-FILE_${ctx:logName}"/>
-        </Logger>
 
         <Root level="DEBUG">
             <AppenderRef ref="FILE"/>
-            <AppenderRef ref="ERRORLOG"/>
-            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="ERROR_LOG"/>
         </Root>
     </Loggers>
 </Configuration>

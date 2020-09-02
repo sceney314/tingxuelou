@@ -23,13 +23,11 @@ public class RedisUtils extends AbstractInit {
         String[] ip = PropertyUtils.getString("redis.host").split(":");
         HOST = ip[0];
         PORT = Integer.parseInt(ip[1]);
-
-        getInstance();
     }
 
     @Override
     public void init(ApplicationContext context) {
-
+        getInstance();
     }
 
     @Override

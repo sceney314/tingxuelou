@@ -1,11 +1,11 @@
 package com.tingxuelou.www.provider.mq;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Copyright (C), 2015-2020
  */
 public abstract class AbstractCurrentlyListener extends AbstractListener implements MessageListenerConcurrently {
-    private static final Logger log = LoggerFactory.getLogger(AbstractCurrentlyListener.class);
+    private static final Logger log = LogManager.getLogger(AbstractCurrentlyListener.class);
 
     private static final String CONSUMED_CURRENTLY_KEY = "ROCKET_MQ_CONSUMER_CURRENTLY_";
 
