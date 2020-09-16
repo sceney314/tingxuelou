@@ -51,6 +51,12 @@
             </dependency>
 
             <!-- 日志相关 -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -108,15 +114,12 @@
                 <artifactId>httpclient</artifactId>
                 <version>4.5.6</version>
             </dependency>
-
-
             <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpmime</artifactId>
                 <version>4.5.6</version>
             </dependency>
-
             <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>

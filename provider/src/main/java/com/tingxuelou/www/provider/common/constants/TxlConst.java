@@ -14,6 +14,7 @@ public class TxlConst {
     public final static String MDC_IP = "mdc_ip";
     public final static String MDC_IP_PORT = "mdc_ip_port";
     public final static String MDC_MEMBER_ID = "mdc_member_id";
+    public final static String MDC_TRACE_ID = "trace_id";
 
     public final static String ERR_SIGN = "签名 sign 校验未通过";
     public final static String ERR_PARAM = "参数非法";
@@ -32,4 +33,12 @@ public class TxlConst {
     // 成功
     public static final Integer CODE_SUCCESS = 0;
     public static final Integer CODE_FAIL = 1;
+
+    /**
+     * http 请求相关
+     */
+    // 默认重试次数 2
+    public static final int HTTP_DEFAULT_TRY_TIME = 2;
+    // 默认超时事假设置为 10 秒
+    public static final int HTTP_DEFAULT_TIME_OUT = 10;
 }
