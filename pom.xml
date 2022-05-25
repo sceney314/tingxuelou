@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <spring_version>5.0.8.RELEASE</spring_version>
+        <spring_version>5.2.22.RELEASE</spring_version>
         <log4j_version>2.13.3</log4j_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <skip_maven_deploy>true</skip_maven_deploy>
